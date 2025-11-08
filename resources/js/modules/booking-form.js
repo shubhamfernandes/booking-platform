@@ -33,8 +33,11 @@ export default class BookingForm {
       this.userSelect.options.length <= 1 ||
       this.clientSelect.options.length <= 1
     ) {
-      this.toggleLoading(true);
-      this.showMessage("Please create at least one User and Client in the DB before adding a booking.", "error");
+      this.submitBtn.disabled = true;
+      this.submitBtn.textContent = "Unavailable";
+      this.showMessage( "⚠️ Cannot create bookings yet — please add at least one User and one Client in the database.",
+    "error"
+    );
       return;
     }
 

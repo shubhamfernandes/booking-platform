@@ -20,17 +20,22 @@ class DemoDataSeeder extends Seeder
         $clients = Client::factory()->count(2)->create();
 
         // Create 10 demo bookings assigned randomly
-        Booking::factory()
-            ->count(10)
+        Booking::factory(10)
             ->make()
-            ->each(function (Booking $booking) use ($users, $clients) {
+            ->each(function ($booking) use ($users, $clients) {
                 $booking->user_id = $users->random()->id;
                 $booking->client_id = $clients->random()->id;
-                $booking->save();
+
+                // Skip if overlap for that user
+                $exists = Booking::where('user_id', $booking->user_id)
+                    ->where('start_time', '<', $booking->end_time)
+                    ->where('end_time', '>', $booking->start_time)
+                    ->exists();
+
+                if (! $exists) {
+                    $booking->save();
+                }
             });
 
-        $this->command->info('✅ Demo data seeded successfully!');
-        $this->command->info('Users: ' . implode(', ', $users->pluck('name')->toArray()));
-        $this->command->info('Clients: ' . implode(', ', $clients->pluck('name')->toArray()));
     }
 }

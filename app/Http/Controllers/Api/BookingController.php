@@ -48,7 +48,7 @@ final class BookingController extends Controller
         $bookings = $this->repo->forWeek($startOfWeek, $endOfWeek);
 
         return response()->json([
-            'data' => BookingResource::collection($bookings),
+            'data' => BookingResource::collection($bookings)->resolve(),
             'meta' => [
                 'week' => $week->toDateString(),
                 'total' => $bookings->count(),
