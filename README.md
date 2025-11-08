@@ -165,7 +165,7 @@ php artisan key:generate
 
 # 4. Configure your DB in .env (SQLite or MySQL)
 
-# 5. Run migrations and seeders
+# 5. Run migrations and seeders !important as user and client dropdown need to be populated
 php artisan migrate --seed
 
 # 6. Build frontend assets
