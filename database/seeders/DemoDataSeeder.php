@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
-use App\Models\User;
-use App\Models\Client;
 use App\Models\Booking;
+use App\Models\Client;
+use App\Models\User;
+use Illuminate\Database\Seeder;
 
 class DemoDataSeeder extends Seeder
 {

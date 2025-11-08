@@ -6,6 +6,7 @@ use App\Domain\Bookings\Contracts\BookingRepositoryInterface;
 use App\Domain\Bookings\Contracts\BookingServiceInterface;
 use App\Domain\Bookings\Repositories\BookingRepository;
 use App\Domain\Bookings\Services\BookingService;
+use App\Domain\Bookings\Validation\Rules\NoOverlap;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -17,6 +18,12 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->bind(BookingRepositoryInterface::class, BookingRepository::class);
         $this->app->bind(BookingServiceInterface::class, BookingService::class);
+
+        $this->app->bind(NoOverlap::class, function ($app) {
+            return new NoOverlap(
+                $app->make(BookingRepositoryInterface::class)
+            );
+        });
     }
 
     /**

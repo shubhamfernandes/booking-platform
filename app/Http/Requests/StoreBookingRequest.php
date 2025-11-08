@@ -22,7 +22,7 @@ class StoreBookingRequest extends FormRequest
             'description' => ['nullable', 'string'],
             'start_time' => ['required', 'date', 'after_or_equal:now'],
             'end_time' => ['required', 'date', 'after:start_time'],
-            'user_id' => ['required', 'exists:users,id', new NoOverlap(app('App\Domain\Bookings\Repositories\BookingRepository'))],
+            'user_id' => ['required', 'exists:users,id', app(NoOverlap::class)],
             'client_id' => ['required', 'exists:clients,id'],
         ];
     }

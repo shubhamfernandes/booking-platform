@@ -17,13 +17,13 @@ return Application::configure(basePath: dirname(__DIR__))
         //
     })
     ->withExceptions(function (Exceptions $exceptions) {
-    $exceptions->render(function (BookingOverlapException $e, $request) {
-        return new JsonResponse([
-            'errors' => [
-                'user_id' => [
-                    'This booking overlaps another booking for the selected user.'
+        $exceptions->render(function (BookingOverlapException $e, $request) {
+            return new JsonResponse([
+                'errors' => [
+                    'user_id' => [
+                        'This booking overlaps another booking for the selected user.',
+                    ],
                 ],
-            ],
-        ], 422);
-    });
-})->create();
+            ], 422);
+        });
+    })->create();

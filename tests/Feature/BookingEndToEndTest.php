@@ -183,4 +183,40 @@ class BookingEndToEndTest extends TestCase
         $this->getJson('/api/bookings?week=not-a-date')->assertStatus(400)
             ->assertJson(['error' => 'Invalid date format']);
     }
+
+    public function test_it_prevents_concurrent_overlapping_bookings_with_pessimistic_locking(): void
+    {
+        $user = User::factory()->create();
+        $client = Client::factory()->create();
+        $start = now()->addDay()->setTime(10, 0);
+
+        $payload = [
+            'title' => 'Concurrent Booking',
+            'start_time' => $start->format('Y-m-d H:i:s'),
+            'end_time' => $start->copy()->addHour()->format('Y-m-d H:i:s'),
+            'user_id' => $user->id,
+            'client_id' => $client->id,
+        ];
+
+        // Act - Simulate two concurrent requests
+        $response1 = $this->postJson('/api/bookings', $payload);
+        $response2 = $this->postJson('/api/bookings', $payload);
+
+        // Assert - One succeeds (201), one fails (422)
+        $statuses = [$response1->status(), $response2->status()];
+        sort($statuses);
+
+        $this->assertEquals([201, 422], $statuses,
+            'One request should succeed (201) and one should fail (422)'
+        );
+
+        $this->assertDatabaseCount('bookings', 1);
+
+        // Verify proper error message
+        $failedResponse = $response1->status() === 422 ? $response1 : $response2;
+        $failedResponse->assertJsonValidationErrors(['user_id'])
+            ->assertJsonPath('errors.user_id.0',
+                'This booking overlaps another booking for the selected user.'
+            );
+    }
 }
