@@ -38,12 +38,12 @@ This ensures:
 
 Example scenarios:
 
-| Case | Start | End | Included? |
+| Case | Start | End | 
 |------|--------|------|-----------|
-| Spans into week | 2025-08-03 23:59:59 → 2025-08-04 00:59:59 | ✅ |
-| Fully inside week | 2025-08-04 00:00:00 → 2025-08-04 01:00:00 | ✅ |
-| Ends exactly at week end | 2025-08-10 23:00:00 → 2025-08-10 23:59:59 | ✅ |
-| Starts after week ends | 2025-08-10 23:59:59 → 2025-08-11 00:59:59 | ❌ |
+| Spans into week | 2025-08-03 23:59:59 → 2025-08-04 00:59:59 | 
+| Fully inside week | 2025-08-04 00:00:00 → 2025-08-04 01:00:00 | 
+| Ends exactly at week end | 2025-08-10 23:00:00 → 2025-08-10 23:59:59 |
+| Starts after week ends | 2025-08-10 23:59:59 → 2025-08-11 00:59:59 | 
 
 This logic was verified with automated tests and ensures accurate week boundary inclusion.
 
