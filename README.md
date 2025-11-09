@@ -11,7 +11,7 @@ This project was designed to meet the given technical specification with an emph
 > ⚙️ **Note on Design Simplicity**
 >
 > This project intentionally **does not include user registration or login** functionality.  
-> Instead, users and clients are managed through **simple dropdowns** for selection when creating a booking — keeping the focus on the **core booking logic** and avoiding unnecessary authentication complexity for this challenge.  
+> Instead, users and clients are managed through **simple dropdowns** for selection when creating a booking keeping the focus on the **core booking logic** and avoiding unnecessary authentication complexity for this test.  
 >
 > In the **DemoDataSeeder**, example users and clients are created for convenience.  
 > If you wish to add additional entities for testing or a specific date, simply **uncomment the commented seeding code** and re-run:
@@ -170,7 +170,7 @@ php artisan test --filter=BookingEndToEndTest
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/your-username/booking-system.git
+git clone https://github.com/shubhamfernandes/booking-platform.git
 cd booking-system
 
 # 2. Install dependencies
