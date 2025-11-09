@@ -171,7 +171,7 @@ php artisan test --filter=BookingEndToEndTest
 ```bash
 # 1. Clone the repository
 git clone https://github.com/shubhamfernandes/booking-platform.git
-cd booking-system
+cd booking-platform
 
 # 2. Install dependencies
 composer install
