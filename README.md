@@ -6,6 +6,24 @@ This project was designed to meet the given technical specification with an emph
 
 ---
 
+---
+
+> ⚙️ **Note on Design Simplicity**
+>
+> This project intentionally **does not include user registration or login** functionality.  
+> Instead, users and clients are managed through **simple dropdowns** for selection when creating a booking — keeping the focus on the **core booking logic** and avoiding unnecessary authentication complexity for this challenge.  
+>
+> In the **DemoDataSeeder**, example users and clients are created for convenience.  
+> If you wish to add additional entities for testing or a specific date, simply **uncomment the commented seeding code** and re-run:
+>
+> ```bash
+> php artisan migrate:fresh --seed
+> ```
+>
+> This allows reviewers or testers to easily repopulate or customize sample data in Codespaces or local setups.
+
+---
+
 ## 🚀 Features
 
 ### ✅ Core Functionality
