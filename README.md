@@ -20,7 +20,7 @@ This project was designed to meet the given technical specification with an emph
 > php artisan migrate:fresh --seed
 > ```
 >
-> This allows reviewers or testers to easily repopulate or customize sample data in Codespaces or local setups.
+> This will allow testers to easily repopulate or customize sample data in Codespaces or local setups.
 
 ---
 
