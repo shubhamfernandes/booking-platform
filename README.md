@@ -1,6 +1,6 @@
 # 🗓️ Booking Management System
 
-A **Laravel 11** application for managing client bookings, complete with validation rules, overlap prevention, weekly reporting, and a minimal, clean front-end.
+A **Laravel 12** application for managing client bookings, complete with validation rules, overlap prevention, weekly reporting, and a minimal, clean front-end.
 
 This project was designed to meet the given technical specification with an emphasis on **SOLID principles**, **clean architecture**, **data integrity**, and **user experience**.
 
